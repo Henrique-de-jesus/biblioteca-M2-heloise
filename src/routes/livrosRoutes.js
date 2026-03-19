@@ -1,9 +1,9 @@
-const express = require('express');
+const express = require("express");
 
 const router = express.Router();
 
-const livrosController = require('../controllers/livrosController');
+const livrosController = require("../controllers/livrosController");
 
-router.get('/', livrosController.listarLivros)
+router.get("/", livrosController.listarLivros);
 
-module.exports = router
+module.exports = router;
