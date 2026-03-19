@@ -1,4 +1,4 @@
-const livros = [
+const acervo = [
     {
         id: 1,
         autor: "Antonio Santa Ana",   
@@ -19,9 +19,9 @@ const livros = [
     } 
     ]  
     
-    const listartodosOsLivros = async () => {
+    const listarTodosOsLivros = async () => {
     
     return acervo;
     }
     
-    module.exports = {listartodosOsLivros}
+    module.exports = {listarTodosOsLivros}

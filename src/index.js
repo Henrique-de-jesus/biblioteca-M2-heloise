@@ -8,6 +8,6 @@ app.use('/livros', livrosRoutes);
 
 const PORT = 3000;
 
-app.listen((PORT), () => {
+app.listen(PORT, () => {
 console.log(`[SERVIDOR]: Biblioteca ondeline em http://localhost:${PORT}`)
 })
