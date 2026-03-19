@@ -1,4 +1,4 @@
-const LivrosServices = require ('../services/livrosServices')
+const livrosService = require ('../services/livrosServices')
 
 const listarLivros = async (req,res) => {
 try{
@@ -12,4 +12,4 @@ res.status(500).json(error,'Erro interno ao listar livros.')
 }
 };
 
-module.export
+module.exports = {listarLivros}

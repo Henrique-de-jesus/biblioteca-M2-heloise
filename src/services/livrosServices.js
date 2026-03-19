@@ -24,4 +24,4 @@ const livros = [
     return acervo;
     }
     
-    module.export = {listartodosOsLivros}
+    module.exports = {listartodosOsLivros}
