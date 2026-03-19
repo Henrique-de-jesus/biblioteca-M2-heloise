@@ -23,4 +23,9 @@ const listarTodosOsLivros = async () => {
   return acervo;
 };
 
-module.exports = { listarTodosOsLivros };
+const listarLivrosPorId = async id => {
+  const livro = acervo.find(i => i.id === Number.id);
+  return livro.id;
+};
+
+module.exports = { listarTodosOsLivros, listarLivrosPorId };
