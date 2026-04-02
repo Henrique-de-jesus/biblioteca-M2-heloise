@@ -2,15 +2,17 @@ const express = require('express');
 const router = express.Router();
 const livrosRoutes = require('./livros.routes');
 const usuariosRoutes = require('./usuarios.routes');
-
-// 1. Rotas de Recursos (Coloque SEMPRE antes do 404)
-router.use('/livros', livrosRoutes);
-router.use('/usuarios', usuariosRoutes);
+const autentificar = require("../middlewares/auth.middleware")
 
 // 2. Rota Raiz
 router.get('/', (req, res) => {
   res.json({ sistema: 'Biblioteca Ralph & Teddy', status: 'Online' });
 });
+
+router.use(autentificar)
+// 1. Rotas de Recursos (Coloque SEMPRE antes do 404)
+router.use('/livros', livrosRoutes);
+router.use('/usuarios', usuariosRoutes);
 
 // 3. Rota 404 (A última linha deste arquivo)
 router.use((req, res) => {

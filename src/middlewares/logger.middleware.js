@@ -4,10 +4,10 @@ const logger = (req, res, next) => {
     const url = req.url;
 
 //Registrar entrada
-console.log(`[  BIBLIOTECA] ${timestamp} | ${metodo} | ${url}`)
+console.log(`[BIBLIOTECA] ${timestamp} | ${metodo} | ${url}`)
 
 //Critico : chama o próximo middleware na cadeia
-//Sem esse next(), NENHUMA rota vai foncionar
+//Sem esse next(), NENHUMA rota vai funcionar
 next();
 };
 
