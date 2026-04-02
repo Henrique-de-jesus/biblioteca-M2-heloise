@@ -3,7 +3,6 @@
 
 //Chave de acesso temporária
 const CHAVE_ACESSO = 'biblioteca-ralph-teddy-2026';
-
 const autentificar = (req, res, next) => {
     //Extrai token e o usuario envia: Authorization
     const authHeader = req.headers['authorization'];
@@ -16,12 +15,13 @@ const autentificar = (req, res, next) => {
         });
     }
 
+    const token = authHeader.split('')[1];
     //Extrai apenas o token
     if(token !== CHAVE_ACESSO){
         return res.status(403).json({
             erro: "Acesso proibido. Crachá inválido ou vencido!"
         });
-    }
+    } 
 
     //Token válido, libera a passagem para o próximo posto
     next();

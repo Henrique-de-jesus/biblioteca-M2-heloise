@@ -1,16 +1,19 @@
 const express = require('express');
 const routes = require('./src/routes/index.routes');
+const { logger, erroHandler, autentificar } = require('./src/middlewares/main.middleware');
 const app = express();
 
 app.use(express.json());
-
+app.use(logger)
 app.use((req, res, next) => {
   console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
   next();
 });
 
 // Utilizando as rotas
+app.use(autentificar)
 app.use(routes);
+app.use(erroHandler)
 
 const PORT = 3000;
 app.listen(PORT, () => {
