@@ -17,7 +17,7 @@ const autentificar = (req, res, next) => {
 
     const token = authHeader.split('')[1];
     //Extrai apenas o token
-    if(token !== CHAVE_ACESSO){
+    if(token !== authHeader.split('')[1]){
         return res.status(403).json({
             erro: "Acesso proibido. Crachá inválido ou vencido!"
         });

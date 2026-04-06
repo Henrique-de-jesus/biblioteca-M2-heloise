@@ -1,8 +1,7 @@
 const express = require('express');
 const routes = require('./src/routes/index.routes');
-const { logger, erroHandler, autentificar } = require('./src/middlewares/main.middleware');
+const { logger, erroHandler} = require('./src/middlewares/main.middleware');
 const app = express();
-const logger = require('./src/middlewares/logger.middleware')
 app.use(express.json());
 
 app.use((req, res, next) => {
@@ -10,11 +9,8 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(logger);
-
-// Utilizando as rotas
-app.use(autentificar)
-app.use(routes);
+app.use(logger); //Registrando
+app.use(routes); // Utilizando rotas
 app.use(erroHandler)
 
 const PORT = 3000;

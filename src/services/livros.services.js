@@ -13,7 +13,7 @@ const acervo = [
   },
   {
     id: 3,
-    titulo: "O Diário de Anne Frank",
+    titulo: 'O Diário de Anne Frank',
     autor: 'Anne Frank',
     disponivel: true,
   },
