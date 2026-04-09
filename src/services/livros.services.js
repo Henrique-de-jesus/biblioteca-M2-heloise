@@ -22,19 +22,17 @@ const buscarLivroPorId = async (id) => {
 };
 
 // Criar um novo livro no acervo
-const criarLivro = async ({ titulo, autor }) => {
+const criarLivro = async ({ titulo, autor, ibsn, ano_publicacao, categoria_id }) => {
   // Regra de negócio: título e autor são obrigatórios
-  if (!titulo || !autor) {
-    throw new Error('Título e autor são obrigatórios.');
+  try{
+    const query =
+      'INSERT INTO livros (titulo, autor, isbn, ano_publicacao, categoria_id) VALUES ($1, $2, $3, $4, $5) RETURNING *';
+    const resultado = await pool.query([titulo, autor, isbn, ano_publicacao, categoria_id]);
+    return resultado.rows[0];
+  }catch(error){
+    console.error("Erro ao criar livro", error.message);
+    throw error;
   }
-  const novoLivro = {
-    id: acervo.length + 1,
-    titulo,
-    autor,
-    disponivel: true,
-  };
-  acervo.push(novoLivro);
-  return novoLivro;
 };
 
 module.exports = { listarTodosLivros, buscarLivroPorId, criarLivro };

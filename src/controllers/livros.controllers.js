@@ -34,8 +34,8 @@ const buscarLivroPorId = async (req, res) => {
 const criarLivro = async (req, res) => {
   try {
     // Extrai os dados do corpo da requisição
-    const { titulo, autor } = req.body;
-    const novoLivro = await livrosService.criarLivro({ titulo, autor });
+    const { titulo, autor, isbn, ano_publicacao, categoria_id } = req.body;
+    const novoLivro = await livrosService.criarLivro({ titulo, autor, isbn, ano_publicacao, categoria_id });
 
     // 201 = Created — status correto para criação bem-sucedida
     res.status(201).json({

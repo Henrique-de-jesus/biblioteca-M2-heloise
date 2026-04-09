@@ -13,6 +13,14 @@ const listarTodosUsuarios = async () => {
   }
 };
 
+// Busca um usuário específico pelo ID
+const buscarUsuarioPorId = async (id) => {
+  const resultado = await pool.query('SELECT * FROM usuarios WHERE id = $1', [id]);
+  return resultado.rows[0] || null; // Retorna o primeiro resultado ou null se não encontrado
+  // Regra de negócio: se não existe, retorna null.
+  // O Controller decide o que fazer com o null.
+};
+
 // Criar um novo usuario
 const criarUsuario = async ({ nome, email }) => {
   if (!nome || !email) {
@@ -35,4 +43,4 @@ const atualizarUsuario = async(usuario) =>{
   return true;
 }
 
-module.exports = { listarTodosUsuarios, criarUsuario, atualizarUsuario };
+module.exports = { listarTodosUsuarios, criarUsuario, atualizarUsuario, buscarUsuarioPorId };
