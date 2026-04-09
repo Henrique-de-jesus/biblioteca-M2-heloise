@@ -1,24 +1,16 @@
-const usuarios = [
-  {
-    id: 1,
-    nome: 'Anderson Dutra',
-    email: 'anderson@gmail.com',
-  },
-  {
-    id: 2,
-    nome: 'Ralph Dutra',
-    email: 'ralph@gmail.com',
-  },
-  {
-    id: 3,
-    nome: 'Teddy Dutra',
-    email: 'teddy@gmail.com',
-  },
-];
+// Simulando um banco de dados com um array em memória
+
+const pool = require("../db/connection");
 
 // Lista todos os usuarios
 const listarTodosUsuarios = async () => {
-  return usuarios;
+  try{
+    const resultado = await pool.query('SELECT * FROM usuarios ORDER BY id');
+    return resultado.rows;
+  }catch(error){
+    console.error("Erro ao listar usuarios", error.message);
+    throw error;
+  }
 };
 
 // Criar um novo usuario

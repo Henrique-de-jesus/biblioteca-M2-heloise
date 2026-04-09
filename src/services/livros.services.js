@@ -1,35 +1,24 @@
-const acervo = [
-  {
-    id: 1,
-    titulo: 'Os Olhos do Cão Siberiano',
-    autor: 'Antonio Santa Ana',
-    disponivel: true,
-  },
-  {
-    id: 2,
-    titulo: 'Alice no País das Maravilhas',
-    autor: 'Lewis Carroll',
-    disponivel: false,
-  },
-  {
-    id: 3,
-    titulo: 'O Diário de Anne Frank',
-    autor: 'Anne Frank',
-    disponivel: true,
-  },
-];
+// Simulando um banco de dados com um array em memória
+
+const pool = require("../db/connection");
 
 // Lista todos os livros do acervo
 const listarTodosLivros = async () => {
-  return acervo;
+  try{
+    const resultado = await pool.query('SELECT * FROM livros ORDER BY id');
+    return resultado.rows;
+  }catch(error){
+    console.error("Erro ao listar livros", error.message);
+    throw error;
+  }
 };
 
 // Busca um livro específico pelo ID
 const buscarLivroPorId = async (id) => {
-  const livro = acervo.find((l) => l.id === Number(id));
+  const resultado = await pool.query('SELECT * FROM livros WHERE id = $1', [id]);
+  return resultado.rows[0] || null; // Retorna o primeiro resultado ou null se não encontrado
   // Regra de negócio: se não existe, retorna null.
   // O Controller decide o que fazer com o null.
-  return livro || null;
 };
 
 // Criar um novo livro no acervo

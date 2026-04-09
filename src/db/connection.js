@@ -7,17 +7,17 @@ const pool = new Pool({
     database: process.env.DB_NAME,
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
-})
+});
 
-(async() => {
+(async () => {
     try{
         const client = await pool.connect();
         console.log("Conexão com o banco realizada!")
         client.release();
     } catch(error){
-        console.error("Erro ao conectar com o banco", error.massage);
-        process.exit();
+        console.error("Erro ao conectar com o banco", error.message);
+        process.exit(1);
     }
-});
+})();
 
 module.exports = pool;
